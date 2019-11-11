@@ -15,7 +15,7 @@ services:
       - "80:80/tcp"
       - "443:443/tcp"
     environment:
-      TZ: 'America/Chicago'
+      TZ: 'America/Bogota'
       WEBPASSWORD: 'HpAtAmgw'
     volumes:
        - './etc-pihole/:/etc/pihole/'
@@ -23,5 +23,16 @@ services:
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
+  home-assistant:
+    container_name: home-assistant
+    image: homeassistant/home-assistant:latest
+    environment:
+      TZ: 'America/Bogota'
+    restart: always
+    network_mode: host
+    volumes:
+      - /PATH_TO_YOUR_CONFIG:/config
+
+    
     
     
