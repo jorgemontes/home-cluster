@@ -1,0 +1,8 @@
+version: "3.7"
+services:
+  docker-swarm-visualizer:
+    image: alexellis2/visualizer-arm
+    restart: always
+    container_name: visualizer-arm
+    network_mode: host
+    
