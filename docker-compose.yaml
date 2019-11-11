@@ -2,7 +2,26 @@ version: "3"
 services:
   docker-swarm-visualizer:
     image: alexellis2/visualizer-arm
-    restart: always
     container_name: visualizer-arm
-    network_mode: host
+    ports:
+      - "8080:8080/tcp"
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "80:80/tcp"
+      - "443:443/tcp"
+    environment:
+      TZ: 'America/Chicago'
+      WEBPASSWORD: 'HpAtAmgw'
+    volumes:
+       - './etc-pihole/:/etc/pihole/'
+       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+    
     
