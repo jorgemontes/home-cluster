@@ -33,7 +33,7 @@ services:
     restart: always
     network_mode: host
     volumes:
-      - /PATH_TO_YOUR_CONFIG:/config
+      - '/home/pi/Home-AssistantConfig:/config'
 
     
     
