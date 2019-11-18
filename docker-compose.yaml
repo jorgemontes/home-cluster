@@ -37,7 +37,8 @@ services:
   tautulli:
     container_name: tautulli
     image: tautulli/tautulli:latest
-    ports: "8181:8181/tcp"
+    ports: 
+      - "8181:8181/tcp"
     environment:
       TZ: 'America/Bogota'
     restart: always
