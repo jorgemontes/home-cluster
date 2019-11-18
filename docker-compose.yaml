@@ -34,6 +34,17 @@ services:
     network_mode: host
     volumes:
       - '/home/pi/Home-AssistantConfig:/config'
+  tautulli:
+    container_name: tautulli
+    image: tautulli/tautulli:latest
+    ports: "8181:8181/tcp"
+    environment:
+      TZ: 'America/Bogota'
+    restart: always
+    network_mode: host
+    volumes:
+      - './config-tautulli/:/config/'
+      - './plex_logs-tautulli/:/plex_logs/'
 
     
     
