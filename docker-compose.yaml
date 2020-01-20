@@ -46,6 +46,15 @@ services:
     volumes:
       - './config-tautulli/:/config/'
       - './plex_logs-tautulli/:/plex_logs/'
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Bogota
+    ports:
+      - 7878:7878
 
     
     
