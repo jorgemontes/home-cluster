@@ -19,6 +19,7 @@ services:
     environment:
       TZ: 'America/Bogota'
       WEBPASSWORD: 'HpAtAmgw'
+      VIRTUAL_HOST: wendy
     volumes:
        - './etc-pihole/:/etc/pihole/'
        - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
