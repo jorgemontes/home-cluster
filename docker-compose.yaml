@@ -58,7 +58,8 @@ services:
       - 7878:7878
   deluge:
     image: linuxserver/deluge
-
+    ports:
+      - "8112:8112"
     
     
     
