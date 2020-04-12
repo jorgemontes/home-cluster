@@ -56,6 +56,15 @@ services:
       - TZ=America/Bogota
     ports:
       - 7878:7878
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Bogota
+    ports:
+      - 8989:8989
   deluge:
     image: linuxserver/deluge
     ports:
