@@ -65,10 +65,14 @@ services:
       - TZ=America/Bogota
     ports:
       - 8989:8989
-  deluge:
-    image: linuxserver/deluge
+  qbittorrent:
+    image: linuxserver/qbittorrent
     ports:
       - "8112:8112"
+      - 6881:6881
+      - 6881:6881/udp
+    environment:
+      WEBUI_PORT: 8112
     
     
     
