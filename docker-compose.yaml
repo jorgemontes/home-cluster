@@ -76,6 +76,14 @@ services:
       - 6881:6881/udp
     environment:
       WEBUI_PORT: 8112
-    
+  bazarr:
+    image: linuxserver/bazarr
+    restart: always
+    container_name: bazarr
+    ports:
+      - 6767:6767
+    volumes:
+      - /home/pi/Videos/Movies:/Movies
+      - /home/pi/Videos/Shows:/Shows    
     
     
