@@ -21,8 +21,8 @@ services:
       WEBPASSWORD: 'HpAtAmgw'
       VIRTUAL_HOST: wendy
     volumes:
-       - './etc-pihole/:/etc/pihole/'
-       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+       - /home/pi/appdata/config/pihole/etc-pihole:/etc/pihole/
+       - /home/pi/appdata/config/pihole/etc-dnsmasq.d:/etc/dnsmasq.d/
     dns:
       - 127.0.0.1
       - 1.1.1.1
@@ -48,8 +48,8 @@ services:
     restart: always
     network_mode: host
     volumes:
-      - './config-tautulli/:/config/'
-      - './plex_logs-tautulli/:/plex_logs/'
+      - /home/pi/appdata/config/tautulli/config-tautulli:/config/
+      - /home/pi/appdata/config/tautulli/plex_logs-tautulli:/plex_logs/
   radarr:
     image: linuxserver/radarr
     container_name: radarr
@@ -59,6 +59,10 @@ services:
       - TZ=America/Bogota
     ports:
       - 7878:7878
+    volumes:
+      - /home/pi/appdata/config/radarr:/config
+      - /home/pi/Videos/Movies:/movies
+      - /home/pi/completedTorrents:/downloads
   sonarr:
     image: linuxserver/sonarr
     container_name: sonarr
@@ -66,6 +70,10 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/Bogota
+    volumes:  
+      - /home/pi/appdata/config/sonarr:/config  
+      - /home/pi/Videos/Shows:/tvseries  
+      - /home/pi/completedTorrents:/downloads  
     ports:
       - 8989:8989
   qbittorrent:
@@ -76,6 +84,9 @@ services:
       - 6881:6881/udp
     environment:
       WEBUI_PORT: 8112
+    volumes:
+      - /home/pi/appdata/config/qbittorrent:/config
+      - /home/pi/completedTorrents:/downloads
   bazarr:
     image: linuxserver/bazarr
     restart: always
