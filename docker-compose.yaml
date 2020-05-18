@@ -54,24 +54,18 @@ services:
     image: linuxserver/radarr
     container_name: radarr
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=America/Bogota
     ports:
       - 7878:7878
     volumes:
-      - /home/pi/appdata/config/radarr:/config
       - /home/pi/Videos/Movies:/movies
       - /home/pi/completedTorrents:/downloads
   sonarr:
     image: linuxserver/sonarr
     container_name: sonarr
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=America/Bogota
-    volumes:  
-      - /home/pi/appdata/config/sonarr:/config  
+    volumes:
       - /home/pi/Videos/Shows:/tvseries  
       - /home/pi/completedTorrents:/downloads  
     ports:
