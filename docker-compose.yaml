@@ -1,94 +1,74 @@
 version: "3"
 services:
-  docker-swarm-visualizer:
-    image: alexellis2/visualizer-arm
-    container_name: visualizer-arm
-    ports:
-      - "8080:8080/tcp"
-    volumes:
-       - '/var/run/docker.sock:/var/run/docker.sock'
-  pihole:
-    container_name: pihole
-    image: pihole/pihole:latest
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "67:67/udp"
-      - "80:80/tcp"
-      - "443:443/tcp"
-    environment:
-      TZ: 'America/Bogota'
-      WEBPASSWORD: 'HpAtAmgw'
-      VIRTUAL_HOST: wendy
-    volumes:
-       - /home/pi/appdata/config/pihole/etc-pihole:/etc/pihole/
-       - /home/pi/appdata/config/pihole/etc-dnsmasq.d:/etc/dnsmasq.d/
-    dns:
-      - 127.0.0.1
-      - 1.1.1.1
-    cap_add:
-      - NET_ADMIN
-    restart: unless-stopped
-  home-assistant:
-    container_name: home-assistant
-    image: homeassistant/home-assistant:latest
-    environment:
-      TZ: 'America/Bogota'
-    restart: always
-    network_mode: host
-    volumes:
-      - '/home/pi/Home-AssistantConfig:/config'
   tautulli:
     container_name: tautulli
     image: tautulli/tautulli:latest
+    restart: always
     ports: 
       - "8181:8181/tcp"
     environment:
       TZ: 'America/Bogota'
-    restart: always
-    network_mode: host
     volumes:
-      - /home/pi/appdata/config/tautulli/config-tautulli:/config/
-      - /home/pi/appdata/config/tautulli/plex_logs-tautulli:/plex_logs/
+      - /home/pi/config/config/tautulli:/config
   radarr:
     image: linuxserver/radarr
+    restart: always
     container_name: radarr
     environment:
       - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
     ports:
       - 7878:7878
     volumes:
       - /home/pi/Videos/Movies:/movies
       - /home/pi/completedTorrents:/downloads
+      - /home/pi/config/config/radarr:/config
   sonarr:
     image: linuxserver/sonarr
+    restart: always
     container_name: sonarr
     environment:
       - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
     volumes:
       - /home/pi/Videos/Shows:/tvseries  
-      - /home/pi/completedTorrents:/downloads  
+      - /home/pi/completedTorrents:/downloads
+      - /home/pi/config/config/sonarr:/config
     ports:
       - 8989:8989
-  qbittorrent:
-    image: linuxserver/qbittorrent
-    ports:
-      - "8112:8112"
-      - 6881:6881
-      - 6881:6881/udp
-    environment:
-      WEBUI_PORT: 8112
-    volumes:
-      - /home/pi/appdata/config/qbittorrent:/config
-      - /home/pi/completedTorrents:/downloads
   bazarr:
     image: linuxserver/bazarr
     restart: always
-    container_name: bazarr
     ports:
       - 6767:6767
     volumes:
-      - /home/pi/Videos/Movies:/Movies
-      - /home/pi/Videos/Shows:/Shows    
-    
-    
+      - /home/pi/Videos/Movies:/movies
+      - /home/pi/Videos/Shows:/tv
+      - /home/pi/config/config/bazarr:/config
+  jackett:
+    image: linuxserver/jackett
+    restart: always
+    ports:
+      - 9117:9117
+    volumes:
+      - /home/pi/config/config/jackett:/config
+  duplicati:
+    image: duplicati/duplicati:linux-arm32v7-latest
+    restart: always
+    ports:
+      - 8200:8200
+    volumes:
+      - /home/pi/config/config/duplicati:/data
+      - /home/pi/config/config/:/home/config
+  deluge:
+    image: linuxserver/deluge
+    restart: always
+    ports:
+      - 8113:8112
+    volumes:
+      - /home/pi/config/config/deluge:/config
+      - /home/pi/completedTorrents:/downloads
+
+      
