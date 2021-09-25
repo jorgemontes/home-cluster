@@ -70,5 +70,17 @@ services:
     volumes:
       - /home/pi/config/config/deluge:/config
       - /home/pi/completedTorrents:/downloads
-
-      
+  readarr:
+    image: linuxserver/readarr
+    restart: always
+    container_name: readarr
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/Books:/books  
+      - /home/pi/completedTorrents:/downloads
+      - /home/pi/config/config/readarr:/config
+    ports:
+      - 8787:8787
