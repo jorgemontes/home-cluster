@@ -84,17 +84,4 @@ services:
       - /home/pi/config/config/readarr:/config
     ports:
       - 8787:8787
-  calibre:
-    image: linuxserver/calibre-web
-    restart: always
-    container_name: calibre-web
-    environment:
-      - TZ=America/Bogota
-      - PUID=1000
-      - PGID=1000
-    volumes:
-      - /home/pi/Books:/books  
-      - /home/pi/config/config/calibre-web:/config
-    ports:
-      - 8083:8083
 
