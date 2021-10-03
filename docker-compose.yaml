@@ -71,7 +71,7 @@ services:
       - /home/pi/config/config/deluge:/config
       - /home/pi/completedTorrents:/downloads
   readarr:
-    image: hotio/readarr:nightly
+    image: linuxserver/readarr:nightly-version-0.1.0.974
     restart: always
     container_name: readarr
     environment:
