@@ -54,14 +54,6 @@ services:
       - 9117:9117
     volumes:
       - /home/pi/config/config/jackett:/config
-  duplicati:
-    image: duplicati/duplicati:linux-arm32v7-latest
-    restart: always
-    ports:
-      - 8200:8200
-    volumes:
-      - /home/pi/config/config/duplicati:/data
-      - /home/pi/config/config/:/home/config
   deluge:
     image: linuxserver/deluge
     restart: always
@@ -84,4 +76,15 @@ services:
       - /home/pi/config/config/readarr:/config
     ports:
       - 8787:8787
-
+  rclone:
+    image: rclone/rclone
+    restart: always
+    container_name: rclone
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/config/config/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/"]
