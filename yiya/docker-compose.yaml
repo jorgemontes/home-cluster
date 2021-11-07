@@ -1,0 +1,18 @@
+version: "3"
+services:
+  ubooquity:
+    container_name: ubooquity
+    image: linuxserver/ubooquity
+    restart: always
+    ports: 
+      - "2202:2202"
+      - "2203:2203"
+    environment:
+      TZ: 'America/Bogota'
+    volumes:
+      - /home/pi/config/:/config
+      - /home/pi/Books/:/books
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
