@@ -15,3 +15,13 @@ services:
       - PUID=1000
       - PGID=1000
       - MAXMEM=1024
+  duckdns:
+    image: linuxserver/duckdns
+    container_name: duckdns
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Bogota
+      - SUBDOMAINS=jono-ubooquity
+      - TOKEN=token
+    restart: unless-stopped
