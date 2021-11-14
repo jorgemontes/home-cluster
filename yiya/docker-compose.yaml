@@ -34,7 +34,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/Bogota
-      - URL=jono-ubooquity.duckdns.org:2202
+      - URL=jono-ubooquity.duckdns.org
       - SUBDOMAINS=wildcard
       - VALIDATION=duckdns
       - DUCKDNSTOKEN=token
