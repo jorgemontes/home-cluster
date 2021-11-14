@@ -25,3 +25,17 @@ services:
       - SUBDOMAINS=jono-ubooquity
       - TOKEN=token
     restart: unless-stopped
+  swag:
+    image: linuxserver/swag
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Bogota
+      - URL=jono-ubooquity.duckdns.org:2202
+      - VALIDATION=http
+    ports:
+      - 443:443
+    restart: unless-stopped
