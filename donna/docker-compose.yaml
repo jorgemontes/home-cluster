@@ -88,3 +88,15 @@ services:
       - /home/pi/config/config/rclone:/config
       - /home/pi/config/config/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/"]
+  prowlarr:
+    image: linuxserver/prowlarr:nightly
+    restart: always
+    container_name: prowlarr
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/prowlarr:/config
+    ports:
+      - 9696:9696
