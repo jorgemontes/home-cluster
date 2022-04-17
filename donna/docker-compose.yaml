@@ -84,4 +84,13 @@ services:
     volumes:
       - /home/pi/config/config/prowlarr:/config
     ports:
+  deluge:
+    image: linuxserver/deluge
+    restart: always
+    ports:
+      - 8113:8112
+    volumes:
+      - /home/pi/config/config/deluge:/config
+      - /home/pi/completedTorrents:/downloads
       - 9696:9696
+
