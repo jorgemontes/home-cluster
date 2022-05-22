@@ -1,4 +1,4 @@
-version: "3"
+version: "3.9"
 services:
   tautulli:
     container_name: tautulli
@@ -61,18 +61,90 @@ services:
       - /home/pi/config/config/readarr:/config
     ports:
       - 8787:8787
-  rclone:
+  rclone-radarr:
     image: rclone/rclone
-    restart: always
-    container_name: rclone
+    deploy:
+      restart_policy:
+        delay: 12h
+    container_name: rclone-radarr
     environment:
       - TZ=America/Bogota
       - PUID=1000
       - PGID=1000
     volumes:
       - /home/pi/config/config/rclone:/config
-      - /home/pi/config/config/:/mnt/config
-    command: ["copy","/mnt/config","jonomega:/Backup/rclone/"]
+      - /home/pi/config/config/radarr/Backups/scheduled/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/radarr/"]
+  rclone-sonarr:
+    image: rclone/rclone
+    deploy:
+      restart_policy:
+        delay: 10h
+    container_name: rclone-sonarr
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/config/config/sonarr/Backups/scheduled/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/sonarr/"]
+  rclone-tautulli:
+    image: rclone/rclone
+    deploy:
+      restart_policy:
+        delay: 12h
+    container_name: rclone-tautulli
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/config/config/tautulli/backups/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/tautulli/"]
+  rclone-bazarr:
+    image: rclone/rclone
+    deploy:
+      restart_policy:
+        delay: 14h
+    container_name: rclone-bazarr
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/config/config/bazarr/backups/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/bazarr/"]
+  rclone-readarr:
+    image: rclone/rclone
+    deploy:
+      restart_policy:
+        delay: 16h
+    container_name: rclone-readarr
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/config/config/readarr/Backups/scheduled/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/readarr/"]
+  rclone-prowlarr:
+    image: rclone/rclone
+    deploy:
+      restart_policy:
+        delay: 18h
+    container_name: rclone-prowlarr
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/config/config/prowlarr/Backups/scheduled/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/prowlarr/"]
   prowlarr:
     image: linuxserver/prowlarr:develop
     restart: always
