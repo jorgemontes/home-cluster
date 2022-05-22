@@ -48,7 +48,7 @@ services:
       - /home/pi/Videos/Shows:/tv
       - /home/pi/config/config/bazarr:/config
   readarr:
-    image: linuxserver/readarr:nightly
+    image: linuxserver/readarr:develop
     restart: always
     container_name: readarr
     environment:
@@ -74,7 +74,7 @@ services:
       - /home/pi/config/config/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/"]
   prowlarr:
-    image: linuxserver/prowlarr:nightly
+    image: linuxserver/prowlarr:develop
     restart: always
     container_name: prowlarr
     environment:
