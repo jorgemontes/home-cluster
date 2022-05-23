@@ -63,6 +63,7 @@ services:
       - 8787:8787
   rclone-radarr:
     image: rclone/rclone
+    restart: always
     deploy:
       restart_policy:
         delay: 12h
@@ -77,6 +78,7 @@ services:
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/radarr/"]
   rclone-sonarr:
     image: rclone/rclone
+    restart: always
     deploy:
       restart_policy:
         delay: 10h
@@ -91,6 +93,7 @@ services:
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/sonarr/"]
   rclone-tautulli:
     image: rclone/rclone
+    restart: always
     deploy:
       restart_policy:
         delay: 12h
@@ -105,6 +108,7 @@ services:
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/tautulli/"]
   rclone-bazarr:
     image: rclone/rclone
+    restart: always
     deploy:
       restart_policy:
         delay: 14h
@@ -119,6 +123,7 @@ services:
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/bazarr/"]
   rclone-readarr:
     image: rclone/rclone
+    restart: always
     deploy:
       restart_policy:
         delay: 16h
@@ -133,6 +138,7 @@ services:
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/readarr/"]
   rclone-prowlarr:
     image: rclone/rclone
+    restart: always
     deploy:
       restart_policy:
         delay: 18h
