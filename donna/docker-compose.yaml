@@ -64,9 +64,6 @@ services:
   rclone-radarr:
     image: rclone/rclone
     restart: always
-    deploy:
-      restart_policy:
-        delay: 12h
     container_name: rclone-radarr
     environment:
       - TZ=America/Bogota
@@ -79,9 +76,6 @@ services:
   rclone-sonarr:
     image: rclone/rclone
     restart: always
-    deploy:
-      restart_policy:
-        delay: 10h
     container_name: rclone-sonarr
     environment:
       - TZ=America/Bogota
@@ -94,9 +88,6 @@ services:
   rclone-tautulli:
     image: rclone/rclone
     restart: always
-    deploy:
-      restart_policy:
-        delay: 12h
     container_name: rclone-tautulli
     environment:
       - TZ=America/Bogota
@@ -109,9 +100,6 @@ services:
   rclone-bazarr:
     image: rclone/rclone
     restart: always
-    deploy:
-      restart_policy:
-        delay: 14h
     container_name: rclone-bazarr
     environment:
       - TZ=America/Bogota
@@ -119,14 +107,11 @@ services:
       - PGID=1000
     volumes:
       - /home/pi/config/config/rclone:/config
-      - /home/pi/config/config/bazarr/backups/:/mnt/config
+      - /home/pi/config/config/bazarr/backup/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/bazarr/"]
   rclone-readarr:
     image: rclone/rclone
     restart: always
-    deploy:
-      restart_policy:
-        delay: 16h
     container_name: rclone-readarr
     environment:
       - TZ=America/Bogota
@@ -139,9 +124,6 @@ services:
   rclone-prowlarr:
     image: rclone/rclone
     restart: always
-    deploy:
-      restart_policy:
-        delay: 18h
     container_name: rclone-prowlarr
     environment:
       - TZ=America/Bogota
