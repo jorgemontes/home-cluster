@@ -63,7 +63,7 @@ services:
       - 8787:8787
   rclone-radarr:
     image: rclone/rclone
-    restart: always
+    restart: on-failure
     container_name: rclone-radarr
     environment:
       - TZ=America/Bogota
@@ -75,7 +75,7 @@ services:
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/radarr/"]
   rclone-sonarr:
     image: rclone/rclone
-    restart: always
+    restart: on-failure
     container_name: rclone-sonarr
     environment:
       - TZ=America/Bogota
@@ -87,7 +87,7 @@ services:
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/sonarr/"]
   rclone-tautulli:
     image: rclone/rclone
-    restart: always
+    restart: on-failure
     container_name: rclone-tautulli
     environment:
       - TZ=America/Bogota
@@ -99,7 +99,7 @@ services:
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/tautulli/"]
   rclone-bazarr:
     image: rclone/rclone
-    restart: always
+    restart: on-failure
     container_name: rclone-bazarr
     environment:
       - TZ=America/Bogota
@@ -111,7 +111,7 @@ services:
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/bazarr/"]
   rclone-readarr:
     image: rclone/rclone
-    restart: always
+    restart: on-failure
     container_name: rclone-readarr
     environment:
       - TZ=America/Bogota
@@ -123,7 +123,7 @@ services:
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/readarr/"]
   rclone-prowlarr:
     image: rclone/rclone
-    restart: always
+    restart: on-failure
     container_name: rclone-prowlarr
     environment:
       - TZ=America/Bogota
