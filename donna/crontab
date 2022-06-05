@@ -20,10 +20,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
 52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
 @reboot mount -a
-0  */10 * * *   docker start rclone-readarr
-0  */12 * * *   docker start rclone-radarr
-0  */14 * * *   docker start rclone-sonarr
-0  */16 * * *   docker start rclone-tautulli
-0  */18 * * *   docker start rclone-bazarr
-0  */20 * * *   docker start rclone-prowlarr
+0  */10 * * *   pi      docker start rclone-readarr
+0  */12 * * *   pi      docker start rclone-radarr
+0  */14 * * *   pi      docker start rclone-sonarr
+0  */16 * * *   pi      docker start rclone-tautulli
+0  */18 * * *   pi      docker start rclone-bazarr
+0  */20 * * *   pi      docker start rclone-prowlarr
 #
