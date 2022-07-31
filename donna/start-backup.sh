@@ -1,4 +1,5 @@
 #!/bin/bash
+echo `date`
 docker start rclone-readarr
 docker start rclone-radarr
 docker start rclone-sonarr

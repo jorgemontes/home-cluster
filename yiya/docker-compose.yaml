@@ -1,12 +1,11 @@
 version: "3"
 services:
-  ubooquity:
-    container_name: ubooquity
-    image: linuxserver/ubooquity
+  calibre-web:
+    container_name: calibre-web
+    image: linuxserver/calibre-web:latest
     restart: always
     ports: 
-      - "2202:2202"
-      - "2203:2203"
+      - "8083:8083"
     volumes:
       - /home/pi/config/:/config
       - /home/pi/Books/:/books
@@ -22,7 +21,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/Bogota
-      - SUBDOMAINS=jono-ubooquity
+      - SUBDOMAINS=jono-calibre
       - TOKEN=token
     restart: unless-stopped
   swag:
@@ -34,7 +33,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/Bogota
-      - URL=jono-ubooquity.duckdns.org
+      - URL=jono-calibre.duckdns.org
       - SUBDOMAINS=wildcard
       - VALIDATION=duckdns
       - DUCKDNSTOKEN=token
