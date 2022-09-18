@@ -1,19 +1,14 @@
 version: "3"
 services:
-  calibre-web:
-    container_name: calibre-web
-    image: linuxserver/calibre-web:latest
+  kavita:
+    container_name: kavita
+    image: docker pull kizaing/kavita
     restart: always
     ports: 
-      - "8083:8083"
+      - "5000:5000"
     volumes:
-      - /home/pi/config/:/config
-      - /home/pi/Books/:/books
-    environment:
-      - TZ=America/Bogota
-      - PUID=1000
-      - PGID=1000
-      - MAXMEM=1024
+      - /home/pi/config/kavita/:/kavita/config
+      - /home/pi/Books/:/manga
   duckdns:
     image: linuxserver/duckdns
     container_name: duckdns
@@ -43,3 +38,26 @@ services:
       - 443:443
       - 80:80
     restart: unless-stopped
+  wordpress:
+    image: wordpress
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+    volumes:
+      - wordpress:/var/www/html
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
