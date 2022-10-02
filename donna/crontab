@@ -1,4 +1,4 @@
-0 21 * * 0,3  /home/pi/git/home-cluster/donna/start-backup.sh >> /home/pi/cronlog.log
-0 3  * * 0    sudo apt get update && sudo apt get upgrade -y
-0 0  * * *    sudo mount -a
-
+0 21  * * 0,3  /home/pi/git/home-cluster/donna/start-backup.sh >> /home/pi/cronlog.log
+0 3   * * 0    sudo apt get update && sudo apt get upgrade -y
+0 */8 * * *    sudo mount -a
+0 0   1 * *    sudo reboot
