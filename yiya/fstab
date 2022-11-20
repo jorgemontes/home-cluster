@@ -1,0 +1,8 @@
+proc            /proc           proc    defaults          0       0
+PARTUUID=6c586e13-01  /boot           vfat    defaults          0       2
+PARTUUID=6c586e13-02  /               ext4    defaults,noatime  0       1
+//192.168.66.139/Books  /home/pi/Books  cifs  file_mode=0777,dir_mode=0777,gid=pi,uid=pi,credentials=/home/pi/.smbcredentials  0  0
+
+# a swapfile is not a swap partition, no line here
+#   use  dphys-swapfile swap[on|off]  for that
+
