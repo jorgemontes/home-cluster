@@ -153,4 +153,13 @@ services:
     volumes:
       - /home/pi/config/config/deluge:/config
       - /home/pi/completedTorrents:/downloads
-
+  transmission:
+    image: linuxserver/transmission
+    restart: always
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    volumes:
+      - /home/pi/config/config/transmission:/config
+      - /home/pi/completedTorrents:/downloads
