@@ -1,4 +1,5 @@
-version: "3"
+version: "3.3"
+services:
   duckdns:
     image: linuxserver/duckdns
     container_name: duckdns
