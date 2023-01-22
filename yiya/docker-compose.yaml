@@ -1,14 +1,4 @@
 version: "3"
-services:
-  kavita:
-    container_name: kavita
-    image: docker pull kizaing/kavita
-    restart: always
-    ports: 
-      - "5000:5000"
-    volumes:
-      - /home/pi/config/kavita/:/kavita/config
-      - /home/pi/Books/:/manga
   duckdns:
     image: linuxserver/duckdns
     container_name: duckdns
@@ -19,45 +9,21 @@ services:
       - SUBDOMAINS=jono-calibre,jono-vpn
       - TOKEN=token
     restart: unless-stopped
-  swag:
-    image: linuxserver/swag
-    container_name: swag
-    cap_add:
-      - NET_ADMIN
+  uptime-kuma:
+    image: louislam/uptime-kuma
+    container_name: duckdns
+    ports:
+      - 3001:3001 
+    restart: always
+  rclone-uptime-kuma:
+    image: rclone/rclone
+    restart: on-failure
+    container_name: rclone-uptime-kuma
     environment:
+      - TZ=America/Bogota
       - PUID=1000
       - PGID=1000
-      - TZ=America/Bogota
-      - URL=jono-calibre.duckdns.org
-      - SUBDOMAINS=wildcard
-      - VALIDATION=duckdns
-      - DUCKDNSTOKEN=token
     volumes:
-      - /home/pi/swag:/config
-    ports:
-      - 443:443
-      - 80:80
-    restart: always
-  wordpress:
-    image: wordpress
-    restart: always
-    ports:
-      - 8080:8080
-    environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: exampleuser
-      WORDPRESS_DB_PASSWORD: examplepass
-      WORDPRESS_DB_NAME: exampledb
-    volumes:
-      - wordpress:/var/www/html
-
-  db:
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_DATABASE: exampledb
-      MYSQL_USER: exampleuser
-      MYSQL_PASSWORD: examplepass
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
-    volumes:
-      - db:/var/lib/mysql
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/config/config/uptime-kuma/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/uptime-kuma/radarr/"]
