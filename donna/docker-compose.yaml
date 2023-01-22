@@ -158,7 +158,7 @@ services:
   rclone-transmission:
     image: rclone/rclone
     restart: on-failure
-    container_name: rclone-prowlarr
+    container_name: rclone-transmission
     environment:
       - TZ=America/Bogota
       - PUID=1000
