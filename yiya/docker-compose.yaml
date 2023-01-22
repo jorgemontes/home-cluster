@@ -29,4 +29,4 @@ services:
     volumes:
       - /home/pi/config/config/rclone:/config
       - /home/pi/config/config/uptime-kuma/:/mnt/config
-    command: ["copy","/mnt/config","jonomega:/Backup/uptime-kuma/radarr/"]
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/uptime-kuma/"]
