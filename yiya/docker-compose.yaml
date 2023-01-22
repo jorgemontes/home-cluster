@@ -16,7 +16,7 @@ services:
     ports:
       - 3001:3001 
     restart: always
-  volumes:
+    volumes:
       - /home/pi/config/config/uptime-kuma:/app/data
   rclone-uptime-kuma:
     image: rclone/rclone
