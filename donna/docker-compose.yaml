@@ -61,6 +61,28 @@ services:
       - /home/pi/config/config/readarr:/config
     ports:
       - 8787:8787
+  prowlarr:
+    image: linuxserver/prowlarr:develop
+    restart: always
+    container_name: prowlarr
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/prowlarr:/config
+    ports:
+      - 9696:9696
+  transmission:
+    image: linuxserver/transmission
+    restart: always
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    volumes:
+      - /home/pi/config/config/transmission:/config
+      - /home/pi/completedTorrents:/downloads
   rclone-radarr:
     image: rclone/rclone
     restart: on-failure
@@ -133,33 +155,15 @@ services:
       - /home/pi/config/config/rclone:/config
       - /home/pi/config/config/prowlarr/Backups/scheduled/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/prowlarr/"]
-  prowlarr:
-    image: linuxserver/prowlarr:develop
-    restart: always
-    container_name: prowlarr
+  rclone-transmission:
+    image: rclone/rclone
+    restart: on-failure
+    container_name: rclone-prowlarr
     environment:
       - TZ=America/Bogota
       - PUID=1000
       - PGID=1000
     volumes:
-      - /home/pi/config/config/prowlarr:/config
-    ports:
-      - 9696:9696
-  deluge:
-    image: linuxserver/deluge
-    restart: always
-    ports:
-      - 8113:8112
-    volumes:
-      - /home/pi/config/config/deluge:/config
-      - /home/pi/completedTorrents:/downloads
-  transmission:
-    image: linuxserver/transmission
-    restart: always
-    ports:
-      - 9091:9091
-      - 51413:51413
-      - 51413:51413/udp
-    volumes:
-      - /home/pi/config/config/transmission:/config
-      - /home/pi/completedTorrents:/downloads
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/config/config/transmission/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/transmission/"]

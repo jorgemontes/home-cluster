@@ -6,4 +6,5 @@ docker start rclone-sonarr
 docker start rclone-tautulli
 docker start rclone-bazarr
 docker start rclone-prowlarr
+docker start rclone-transmission
 
