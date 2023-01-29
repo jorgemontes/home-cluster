@@ -18,6 +18,14 @@ services:
     restart: always
     volumes:
       - /home/pi/config/config/uptime-kuma:/app/data
+  chatgpt-bot:
+    image: ghcr.io/m1guelpf/chatgpt-telegram
+    container_name: chatgpt-telegram
+    volumes:
+      - /home/pi/config/config/chatgpt-bot:/root/.config
+    environment:
+      - TELEGRAM_ID=
+      - TELEGRAM_TOKEN=
   rclone-uptime-kuma:
     image: rclone/rclone
     restart: on-failure
