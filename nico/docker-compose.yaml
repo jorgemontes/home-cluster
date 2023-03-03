@@ -1,6 +1,6 @@
 version: "3.3"
 services:
-  duckdns:
+  pihole:
     image: pihole/pihole:latest
     container_name: pihole
     environment:
