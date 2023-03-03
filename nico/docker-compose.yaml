@@ -10,8 +10,9 @@ services:
       - FTLCONF_LOCAL_IPV4="127.0.0.1"
     restart: unless-stopped
     ports:
-      - 53:53
-      - 80:80
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "80:80/tcp"
     volumes:
       - /home/pi/config/config/pihole/etc-pihole:/etc/pihole
       - /home/pi/config/config/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
@@ -26,4 +27,4 @@ services:
     volumes:
       - /home/pi/config/config/rclone:/config
       - /home/pi/config/config/pihole/:/mnt/config
-    command: ["copy","/mnt/config","jonomega:/Backup/rclone/pihole"]
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/pihole1"]
