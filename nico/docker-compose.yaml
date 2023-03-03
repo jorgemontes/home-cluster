@@ -1,0 +1,29 @@
+version: "3.3"
+services:
+  duckdns:
+    image: pihole/pihole:latest
+    container_name: pihole
+    environment:
+      - TZ=America/Bogota
+      - VIRTUAL_HOST="pi.hole"
+      - PROXY_LOCATION="pi.hole"
+      - FTLCONF_LOCAL_IPV4="127.0.0.1"
+    restart: unless-stopped
+    ports:
+      - 53:53
+      - 80:80
+    volumes:
+      - /home/pi/config/config/pihole/etc-pihole:/etc/pihole
+      - /home/pi/config/config/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
+  rclone-pihole:
+    image: rclone/rclone
+    restart: on-failure
+    container_name: rclone-pihole
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/config/config/pihole/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/pihole"]
