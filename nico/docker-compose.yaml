@@ -7,7 +7,7 @@ services:
       - TZ=America/Bogota
       - VIRTUAL_HOST="pi.hole"
       - PROXY_LOCATION="pi.hole"
-      - FTLCONF_LOCAL_IPV4="127.0.0.1"
+      - FTLCONF_LOCAL_IPV4="192.168.66.183"
     restart: unless-stopped
     ports:
       - "53:53"
