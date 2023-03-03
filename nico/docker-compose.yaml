@@ -8,6 +8,8 @@ services:
       - VIRTUAL_HOST="pi.hole"
       - PROXY_LOCATION="pi.hole"
       - FTLCONF_LOCAL_IPV4="127.0.0.1"
+      - PUID=1000
+      - PGID=1000
     restart: unless-stopped
     ports:
       - "53:53"
