@@ -1,31 +1,26 @@
 version: "3.3"
 services:
   pihole:
-    image: pihole/pihole:latest
-    container_name: pihole
+    image: linuxserver/heimdall:latest
+    container_name: heimdall
     environment:
       - TZ=America/Bogota
-      - VIRTUAL_HOST="pi.hole"
-      - PROXY_LOCATION="pi.hole"
-      - FTLCONF_LOCAL_IPV4="127.0.0.1"
       - PUID=1000
       - PGID=1000
     restart: unless-stopped
     ports:
-      - "53:53"
-      - "80:80"
+      - "80:81"
     volumes:
-      - /home/pi/config/config/pihole/etc-pihole:/etc/pihole
-      - /home/pi/config/config/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
-  rclone-pihole:
+      - /home/pi/config/config/heimdall:/config
+  rclone-heimdall:
     image: rclone/rclone
     restart: on-failure
-    container_name: rclone-pihole
+    container_name: rclone-heimdall
     environment:
       - TZ=America/Bogota
       - PUID=1000
       - PGID=1000
     volumes:
       - /home/pi/config/config/rclone:/config
-      - /home/pi/config/config/pihole/:/mnt/config
-    command: ["copy","/mnt/config","jonomega:/Backup/rclone/pihole1"]
+      - /home/pi/config/config/heimdall/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/heimdall"]
