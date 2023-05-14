@@ -9,7 +9,7 @@ services:
       - PGID=1000
     restart: unless-stopped
     ports:
-      - "80:81"
+      - "81:80"
     volumes:
       - /home/pi/config/config/heimdall:/config
   rclone-heimdall:
