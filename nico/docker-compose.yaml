@@ -31,7 +31,7 @@ services:
       POSTGRES_USER: vikunja
     volumes:
       - ./db:/var/lib/postgresql/data
-  restart: unless-stopped
+    restart: unless-stopped
   api:
     image: vikunja/api
     environment:
