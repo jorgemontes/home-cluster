@@ -58,7 +58,7 @@ services:
     environment:
       VIKUNJA_API_URL: http://nico:3456/api/v1
     restart: unless-stopped
-rclone-vikunja-db:
+  rclone-vikunja-db:
     image: rclone/rclone
     restart: on-failure
     container_name: rclone-vikunja-db
@@ -70,7 +70,7 @@ rclone-vikunja-db:
       - /home/pi/config/config/rclone:/config
       - ./db/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/vikunja/db"]
-rclone-vikunja-api:
+  rclone-vikunja-api:
     image: rclone/rclone
     restart: on-failure
     container_name: rclone-vikunja-api
