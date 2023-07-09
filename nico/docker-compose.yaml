@@ -58,3 +58,27 @@ services:
     environment:
       VIKUNJA_API_URL: http://nico:3456/api/v1
     restart: unless-stopped
+rclone-vikunja-db:
+    image: rclone/rclone
+    restart: on-failure
+    container_name: rclone-vikunja-db
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - ./db/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/vikunja/db"]
+rclone-vikunja-api:
+    image: rclone/rclone
+    restart: on-failure
+    container_name: rclone-vikunja-api
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - ./files:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/vikunja/api"]
