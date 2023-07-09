@@ -32,6 +32,8 @@ services:
     volumes:
       - ./db:/var/lib/postgresql/data
     restart: unless-stopped
+     ports:
+      - "5432:5432"
   api:
     image: vikunja/api
     environment:
