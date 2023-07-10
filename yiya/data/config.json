@@ -6,6 +6,13 @@
       "host": "vpn",
       "password": "password",
       "provider_ip": true
+    },
+    {
+      "provider": "namecheap",
+      "domain": "montesj.dev",
+      "host": "vikunja",
+      "password": "password",
+      "provider_ip": true
     }
   ]
 }
