@@ -1,5 +1,14 @@
 version: "3.3"
 services:
+  namecheap-ddns:
+    image: joshuamorris3/namecheap-ddns-update
+    container_name: namecheap_ddns_updater
+    restart: unless-stopped
+    environment:
+      - DOMAIN=montesj.dev
+      - SUBDOMAINS=vpn,vikunja
+      - INTERVAL=6h
+      - NC_DDNS_PASS=montesj.dev=test
   duckdns:
     image: linuxserver/duckdns
     container_name: duckdns
