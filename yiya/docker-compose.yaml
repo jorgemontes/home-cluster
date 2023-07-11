@@ -8,15 +8,6 @@ services:
       - 8000:8000
     volumes:
       - ./data:/updater/data
-  duckdns:
-    image: linuxserver/duckdns
-    container_name: duckdns
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=America/Bogota
-      - SUBDOMAINS=jono-calibre,jono-vpn
-      - TOKEN=token
     restart: unless-stopped
   uptime-kuma:
     image: louislam/uptime-kuma
