@@ -47,20 +47,6 @@ services:
       - /home/pi/Videos/Movies:/movies
       - /home/pi/Videos/Shows:/tv
       - /home/pi/config/config/bazarr:/config
-  readarr:
-    image: linuxserver/readarr:develop
-    restart: always
-    container_name: readarr
-    environment:
-      - TZ=America/Bogota
-      - PUID=1000
-      - PGID=1000
-    volumes:
-      - /home/pi/Books:/books  
-      - /home/pi/completedTorrents:/downloads
-      - /home/pi/config/config/readarr:/config
-    ports:
-      - 8787:8787
   prowlarr:
     image: linuxserver/prowlarr:develop
     restart: always
@@ -131,18 +117,6 @@ services:
       - /home/pi/config/config/rclone:/config
       - /home/pi/config/config/bazarr/backup/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/bazarr/"]
-  rclone-readarr:
-    image: rclone/rclone
-    restart: on-failure
-    container_name: rclone-readarr
-    environment:
-      - TZ=America/Bogota
-      - PUID=1000
-      - PGID=1000
-    volumes:
-      - /home/pi/config/config/rclone:/config
-      - /home/pi/config/config/readarr/Backups/scheduled/:/mnt/config
-    command: ["copy","/mnt/config","jonomega:/Backup/rclone/readarr/"]
   rclone-prowlarr:
     image: rclone/rclone
     restart: on-failure
