@@ -58,6 +58,16 @@ services:
     environment:
       VIKUNJA_API_URL: http://nico:3456/api/v1
     restart: unless-stopped
+  tautulli:
+    container_name: tautulli
+    image: tautulli/tautulli:latest
+    restart: always
+    ports: 
+      - "8181:8181/tcp"
+    environment:
+      TZ: 'America/Bogota'
+    volumes:
+      - /home/pi/config/config/tautulli:/config
   rclone-vikunja-db:
     image: rclone/rclone
     restart: on-failure
@@ -94,3 +104,15 @@ services:
       - /home/pi/config/config/rclone:/config
       - /home/pi/pihole-backup/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/pihole1"]
+  rclone-tautulli:
+    image: rclone/rclone
+    restart: on-failure
+    container_name: rclone-tautulli
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/config/config/tautulli/backups/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/tautulli/"]
