@@ -79,7 +79,7 @@ services:
     volumes:
       - /home/pi/config/config/rclone:/config
       - ./db/:/mnt/config
-    command: ["copy","/mnt/config","jonomega:/Backup/rclone/vikunja/db"]
+    command: ["sync","/mnt/config","jonomega:/Backup/rclone/vikunja/db"]
   rclone-vikunja-api:
     image: rclone/rclone
     restart: on-failure
@@ -91,7 +91,7 @@ services:
     volumes:
       - /home/pi/config/config/rclone:/config
       - ./files:/mnt/config
-    command: ["copy","/mnt/config","jonomega:/Backup/rclone/vikunja/api"]
+    command: ["sync","/mnt/config","jonomega:/Backup/rclone/vikunja/api"]
   rclone-pihole:
     image: rclone/rclone
     restart: on-failure
