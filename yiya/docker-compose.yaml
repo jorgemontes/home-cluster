@@ -14,6 +14,8 @@ services:
     ports:
       - 3001:3001 
     restart: always
+    environment:
+      - UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN=true
     volumes:
       - /home/pi/config/config/uptime-kuma:/app/data
   rclone-uptime-kuma:
