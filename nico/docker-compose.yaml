@@ -104,6 +104,18 @@ services:
       - /home/pi/config/config/rclone:/config
       - /home/pi/pihole-backup/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/pihole1"]
+  rclone-pivpn:
+    image: rclone/rclone
+    restart: on-failure
+    container_name: rclone-pihole
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/pivpnbackup/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/pivpn"]
   rclone-tautulli:
     image: rclone/rclone
     restart: on-failure

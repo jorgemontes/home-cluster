@@ -3,3 +3,4 @@
 0 0   2 * *    sudo reboot
 */30 * * * *   /home/pi/git/home-cluster/nico/wireguard-ping.sh
 0 1 */15 * *   /home/pi/git/home-cluster/nico/pihole-backup.sh 
+0 1 */17 * *   /home/pi/git/home-cluster/nico/pivpn-backup.sh 
