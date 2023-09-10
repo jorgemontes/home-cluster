@@ -1,0 +1,1 @@
+daemon nico =NOPASSWD: /usr/bin/systemctl restart isp-rpi-reporter.service,/usr/sbin/shutdown
