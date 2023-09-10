@@ -107,7 +107,7 @@ services:
   rclone-pivpn:
     image: rclone/rclone
     restart: on-failure
-    container_name: rclone-pihole
+    container_name: rclone-pivpn
     environment:
       - TZ=America/Bogota
       - PUID=1000
