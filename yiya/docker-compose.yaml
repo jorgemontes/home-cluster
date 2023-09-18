@@ -30,3 +30,15 @@ services:
       - /home/pi/config/config/rclone:/config
       - /home/pi/config/config/uptime-kuma/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/uptime-kuma/"]
+  rclone-pihole:
+    image: rclone/rclone
+    restart: on-failure
+    container_name: rclone-pihole
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/pihole-backup/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/pihole2"]
