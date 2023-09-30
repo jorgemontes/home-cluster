@@ -15,7 +15,7 @@ sleep 300
 docker start rclone-transmission >> exe-log.log
 sleep 300
 echo `date` >> exe-log.log
-CONTENT=`cat exe-log.log`````
+CONTENT=`cat exe-log.log`
 curl -X POST \
      -H 'Content-Type: application/json' \
      -d $JSON \
