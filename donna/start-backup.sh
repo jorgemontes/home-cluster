@@ -1,7 +1,7 @@
 #!/bin/bash
 TELEGRAM_BOT_TOKEN=
 CHAT_ID=
-TEXT='\U+1F4BE Backup de Donna finalizado'
+TEXT='\\U+1F4BE Backup de Donna finalizado'
 JSON='{"chat_id": $chat_id, "text": $text}'
 echo `date` > exe-log.log
 docker start rclone-radarr >> exe-log.log
