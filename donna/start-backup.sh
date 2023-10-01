@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source donna/backup-config.cfg
+source backup-config.cfg
 TEXT="Backup de \"$HOSTNAME\" finalizado"
 
 echo `date` > exe-log.log
