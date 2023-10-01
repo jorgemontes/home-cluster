@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source bakup-config.cfg
+source backup-config.cfg
 TEXT="Backup de \"$HOSTNAME\" finalizado"
 
 echo `date` > exe-log.log
@@ -8,7 +8,7 @@ echo `date` > exe-log.log
 for container in "${CONTAINERS[@]}"; do
   echo "Iniciando el contenedor $container" >> exe-log.log
   docker start "$container" >> exe-log.log
-  sleep 300
+  sleep 30
 done
 echo `date` >> exe-log.log
 
