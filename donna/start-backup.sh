@@ -1,19 +1,15 @@
 #!/bin/bash
 
-TELEGRAM_BOT_TOKEN=''
-CHAT_ID=''
-TEXT='Backup de Donna finalizado'
+source bakup-config.cfg
+TEXT="Backup de \"$HOSTNAME\" finalizado"
+
 echo `date` > exe-log.log
-docker start rclone-radarr >> exe-log.log
-sleep 300
-docker start rclone-sonarr >> exe-log.log
-sleep 300
-docker start rclone-bazarr >> exe-log.log
-sleep 300
-docker start rclone-prowlarr >> exe-log.log
-sleep 300
-docker start rclone-transmission >> exe-log.log
-sleep 300
+# Iterar por la lista de contenedores y realizar acciones en cada uno
+for container in "${CONTAINERS[@]}"; do
+  echo "Iniciando el contenedor $container" >> exe-log.log
+  docker start "$container" >> exe-log.log
+  sleep 300
+done
 echo `date` >> exe-log.log
 
 CONTENT=`cat exe-log.log`
