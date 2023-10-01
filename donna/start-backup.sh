@@ -5,15 +5,15 @@ CHAT_ID=''
 TEXT='Backup de Donna finalizado'
 echo `date` > exe-log.log
 docker start rclone-radarr >> exe-log.log
-sleep 30
+sleep 300
 docker start rclone-sonarr >> exe-log.log
-sleep 30
+sleep 300
 docker start rclone-bazarr >> exe-log.log
-sleep 30
+sleep 300
 docker start rclone-prowlarr >> exe-log.log
-sleep 30
+sleep 300
 docker start rclone-transmission >> exe-log.log
-sleep 30
+sleep 300
 echo `date` >> exe-log.log
 
 CONTENT=`cat exe-log.log`
