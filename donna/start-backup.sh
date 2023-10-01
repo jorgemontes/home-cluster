@@ -15,7 +15,7 @@ echo `date` >> exe-log.log
 CONTENT=`cat exe-log.log`
 TEXT="$TEXT "
 JSON="{\"chat_id\": \"$CHAT_ID\", \"text\": \"$TEXT\"}"
-$JSON > telegram.json 
+echo $JSON > telegram.json 
 
 curl -X POST \
      -H 'Content-Type: application/json' \
