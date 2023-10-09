@@ -1,0 +1,9 @@
+scrape_configs:
+  - job_name: 'homeassistant'
+    metrics_path: /api/prometheus
+    scrape_interval: 60s
+    static_configs:
+      - targets: ['wendy:8123']
+    scheme: http
+    authorization:
+      credentials: "myaccesstoken"
