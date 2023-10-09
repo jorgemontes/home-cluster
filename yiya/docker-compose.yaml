@@ -8,6 +8,14 @@ services:
       - 8000:8000
     volumes:
       - ./data:/updater/data
+  prometheus:
+    image: prom/prometheus
+    restart: always
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yml
   uptime-kuma:
     image: louislam/uptime-kuma
     container_name: uptime-kuma
