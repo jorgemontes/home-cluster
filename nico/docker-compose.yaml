@@ -80,7 +80,7 @@ services:
       - PGID=1000
     volumes:
       - /home/pi/config/config/rclone:/config
-      - ./home/pi/config/config/vikunja/db:/mnt/config
+      - /home/pi/config/config/vikunja/db:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/vikunja/db"]
   rclone-vikunja-api:
     image: rclone/rclone
