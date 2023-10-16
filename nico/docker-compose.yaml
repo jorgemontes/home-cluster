@@ -30,6 +30,7 @@ services:
       POSTGRES_PASSWORD: secret
       POSTGRES_USER: vikunja
     volumes:
+      - /home/pi/config/config/vikunja/db/:/backup
       - ./db:/var/lib/postgresql/data
     restart: unless-stopped
     ports:
@@ -78,8 +79,8 @@ services:
       - PGID=1000
     volumes:
       - /home/pi/config/config/rclone:/config
-      - ./db/:/mnt/config
-    command: ["sync","/mnt/config","jonomega:/Backup/rclone/vikunja/db"]
+      - ./home/pi/config/config/vikunja/db:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/vikunja/db"]
   rclone-vikunja-api:
     image: rclone/rclone
     restart: on-failure
