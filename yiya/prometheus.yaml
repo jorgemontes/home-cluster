@@ -8,7 +8,6 @@ scrape_configs:
     authorization:
       credentials: "myaccesstoken"
   - job_name: 'donna'
-    metrics_path: /api/prometheus
     scrape_interval: 60s
     static_configs:
       - targets: ['donna:9100']
