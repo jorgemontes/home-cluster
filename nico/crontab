@@ -2,4 +2,5 @@
 0 3   * * 1    sudo apt get update && sudo apt get upgrade -y
 */30 * * * *   /home/pi/git/home-cluster/nico/wireguard-ping.sh
 0 1 */15 * *   /home/pi/git/home-cluster/nico/pihole-backup.sh 
-0 1 */17 * *   /home/pi/git/home-cluster/nico/pivpn-backup.sh 
+0 1 */17 * *   /home/pi/git/home-cluster/nico/pivpn-backup.sh
+0 1 * * 3,6    /home/pi/git/home-cluster/nico/postgres-backup.sh 
