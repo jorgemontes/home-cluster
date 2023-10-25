@@ -1,7 +1,7 @@
 #!/bin/bash
 date
 
-pihole -a -t /home/pi/pihole-bakckup/pi-hole-nico-teleporter_$(date +%Y-%m-%d).tar.gz
+pihole -a -t /home/pi/pihole-backup/pi-hole-nico-teleporter_$(date +%Y-%m-%d).tar.gz
 
 pivpn -bk
 

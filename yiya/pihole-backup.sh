@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd /home/pi/pihole-backup
-pihole -a -t
+pihole -a -t /home/pi/pihole-backup/pi-hole-yiya-teleporter_$(date +%Y-%m-%d).tar.gz
+
