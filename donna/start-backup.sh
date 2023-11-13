@@ -8,15 +8,16 @@ echo `date` > exe-log.log
 for container in "${CONTAINERS[@]}"; do
   echo "Iniciando el contenedor $container" >> exe-log.log
   docker start "$container" >> exe-log.log
-  sleep 300
+  sleep 30
 done
 echo `date` >> exe-log.log
 
 CONTENT=`cat exe-log.log`
 LENGTH=`wc -c < exe-log.log`
+HOSTNAME_LENGTH=`echo $HOSTNAME | wc -c `
 TEXT="$TEXT $CONTENT   "
-JSON="{\"chat_id\": \"$CHAT_ID\", \"text\": \"$TEXT\", \"entities\":[{\"type\":\"bold\",\"offset\":10,\"length\":6},{\"type\":\"pre\",\"offset\":27,\"length\":$LENGTH}]}"
-echo $JSON > telegram.json
+JSON="{\"chat_id\": \"$CHAT_ID\", \"text\": \"$TEXT\", \"entities\":[{\"type\":\"bold\",\"offset\":10,\"length\":$HOSTNAME_LENGTH},{\"type\":\"pre\",\"offset\":27,\"length\":$LENGTH}]}"
+echo $JSON > telegram.json 
 
 curl -X POST \
      -H 'Content-Type: application/json' \
