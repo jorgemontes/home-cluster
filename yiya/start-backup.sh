@@ -8,7 +8,7 @@ echo `date` > exe-log.log
 for container in "${CONTAINERS[@]}"; do
   echo "Iniciando el contenedor $container" >> exe-log.log
   docker start "$container" >> exe-log.log
-  sleep 30
+  sleep 300
 done
 echo `date` >> exe-log.log
 
