@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source /home/pi/git/home-cluster/yiya/backup-config.cfg
-TEXT="Backup de $HOSTNAME finalizado"
+TEXT="Backup de **$HOSTNAME** finalizado"
 
 echo `date` > exe-log.log
 # Iterar por la lista de contenedores y realizar acciones en cada uno
