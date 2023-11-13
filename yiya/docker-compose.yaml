@@ -23,7 +23,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+      - /home/pi/config/config/grafana:/var/lib/grafana
   uptime-kuma:
     image: louislam/uptime-kuma
     container_name: uptime-kuma
@@ -58,3 +58,15 @@ services:
       - /home/pi/config/config/rclone:/config
       - /home/pi/pihole-backup/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/pihole2"]
+  rclone-grafana:
+    image: rclone/rclone
+    restart: on-failure
+    container_name: rclone-grafana
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/config/config/grafana/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/grafana"]
