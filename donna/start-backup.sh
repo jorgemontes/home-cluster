@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source /home/pi/git/home-cluster/donna/backup-config.cfg
-TEXT="Backup de **$HOSTNAME** finalizado"
+TEXT="Backup de $HOSTNAME finalizado"
 
 echo `date` > exe-log.log
 # Iterar por la lista de contenedores y realizar acciones en cada uno
@@ -13,9 +13,10 @@ done
 echo `date` >> exe-log.log
 
 CONTENT=`cat exe-log.log`
-TEXT="$TEXT "
-JSON="{\"chat_id\": \"$CHAT_ID\", \"text\": \"$TEXT\"}"
-echo $JSON > telegram.json 
+LENGTH=`wc -c < exe-log.log`
+TEXT="$TEXT $CONTENT   "
+JSON="{\"chat_id\": \"$CHAT_ID\", \"text\": \"$TEXT\", \"entities\":[{\"type\":\"bold\",\"offset\":10,\"length\":6},{\"type\":\"pre\",\"offset\":27,\"length\":$LENGTH}]}"
+echo $JSON > telegram.json
 
 curl -X POST \
      -H 'Content-Type: application/json' \
