@@ -16,6 +16,14 @@ services:
       - 9090:9090
     volumes:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yml
   uptime-kuma:
     image: louislam/uptime-kuma
     container_name: uptime-kuma
