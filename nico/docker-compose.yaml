@@ -45,7 +45,7 @@ services:
       VIKUNJA_DATABASE_USER: vikunja
       VIKUNJA_DATABASE_DATABASE: vikunja
       VIKUNJA_SERVICE_JWTSECRET: <a super secure random secret>
-      VIKUNJA_SERVICE_FRONTENDURL: http://<your public frontend url with slash>/
+      VIKUNJA_SERVICE_FRONTENDURL: https://vikunja.montesj.dev
     ports:
       - 3456:3456
     volumes:
@@ -58,7 +58,7 @@ services:
     ports:
       - 82:80
     environment:
-      VIKUNJA_API_URL: http://nico:3456/api/v1
+      VIKUNJA_API_URL: https://vikunja.montesj.dev:3456/api/v1
     restart: unless-stopped
   tautulli:
     container_name: tautulli
@@ -70,6 +70,17 @@ services:
       TZ: 'America/Bogota'
     volumes:
       - /home/pi/config/config/tautulli:/config
+  fireflyiii:
+    image: fireflyiii/core:latest
+    container_name: fireflyiii
+    restart: always
+    volumes:
+      - firefly_iii_upload:/var/www/html/storage/upload
+    env_file: .env
+    ports:
+      - 80:8080
+    depends_on:
+      - db
   rclone-vikunja-db:
     image: rclone/rclone
     restart: on-failure
