@@ -78,7 +78,7 @@ services:
       - /home/pi/config/config/fireflyiii:/var/www/html/storage/upload
     env_file: .env
     ports:
-      - 80:8080
+      - 83:8080
     depends_on:
       - db
   rclone-vikunja-db:
