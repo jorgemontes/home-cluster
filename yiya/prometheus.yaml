@@ -12,3 +12,8 @@ scrape_configs:
     static_configs:
       - targets: ['donna:9100']
     scheme: http
+  - job_name: 'nico'
+    scrape_interval: 60s
+    static_configs:
+      - targets: ['nico:9100']
+    scheme: http
