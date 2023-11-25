@@ -17,3 +17,8 @@ scrape_configs:
     static_configs:
       - targets: ['nico:9100']
     scheme: http
+  - job_name: 'yiya'
+    scrape_interval: 60s
+    static_configs:
+      - targets: ['yiya:9100']
+    scheme: http
