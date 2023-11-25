@@ -22,3 +22,8 @@ scrape_configs:
     static_configs:
       - targets: ['yiya:9100']
     scheme: http
+  - job_name: 'plex-local'
+    scrape_interval: 60s
+    static_configs:
+      - targets: ['plex-local:9100']
+    scheme: http
