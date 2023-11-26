@@ -26,6 +26,8 @@ services:
       - /home/pi/Videos/Shows:/tvseries  
       - /home/pi/completedTorrents:/downloads
       - /home/pi/config/config/sonarr:/config
+    ports:
+      - 8989:8989
   lidarr:
     image: linuxserver/lidarr
     restart: always
