@@ -26,8 +26,20 @@ services:
       - /home/pi/Videos/Shows:/tvseries  
       - /home/pi/completedTorrents:/downloads
       - /home/pi/config/config/sonarr:/config
+  lidarr:
+    image: linuxserver/lidarr
+    restart: always
+    container_name: lidarr
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/Music:/music  
+      - /home/pi/completedTorrents:/downloads
+      - /home/pi/config/config/lidarr:/config
     ports:
-      - 8989:8989
+      - 8686:8686
   bazarr:
     image: linuxserver/bazarr
     restart: always
@@ -83,6 +95,18 @@ services:
       - /home/pi/config/config/rclone:/config
       - /home/pi/config/config/sonarr/Backups/scheduled/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/sonarr/"]
+  rclone-lidarr:
+    image: rclone/rclone
+    restart: on-failure
+    container_name: rclone-lidarr
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/config/config/lidarr/Backups/scheduled/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/lidarr/"]
   rclone-bazarr:
     image: rclone/rclone
     restart: on-failure

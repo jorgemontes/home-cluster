@@ -4,7 +4,7 @@ PARTUUID=741345cc-02  /               ext4    defaults,noatime 0      1
 
 
 //192.168.66.139/Movies  /home/pi/Videos/Movies  cifs  file_mode=0777,dir_mode=0777,gid=pi,uid=pi,credentials=/home/pi/.smbcredentials  0  0
-//192.168.66.139/Books  /home/pi/Books  cifs  file_mode=0777,dir_mode=0777,gid=pi,uid=pi,credentials=/home/pi/.smbcredentials  0  0
+//192.168.66.139/Music  /home/pi/Music  cifs  file_mode=0777,dir_mode=0777,gid=pi,uid=pi,credentials=/home/pi/.smbcredentials  0  0
 //192.168.66.139/Shows  /home/pi/Videos/Shows  cifs  file_mode=0777,dir_mode=0777,gid=pi,uid=pi,credentials=/home/pi/.smbcredentials  0  0
 //192.168.66.139/completedTorrents  /home/pi/completedTorrents  cifs  file_mode=0777,dir_mode=0777,gid=pi,uid=pi,credentials=/home/pi/.smbcredentials  0  0
 //192.168.66.139/appdata  /home/pi/appdata  cifs  file_mode=0777,dir_mode=0777,gid=pi,uid=pi,credentials=/home/pi/.smbcredentials  0  0
