@@ -36,8 +36,9 @@ services:
     restart: unless-stopped
     ports:
       - "5432:5432"
-  api:
-    image: vikunja/api
+  vikunja:
+    image: vikunja/vikunja
+    container_name: vikunja
     environment:
       VIKUNJA_DATABASE_HOST: db
       VIKUNJA_DATABASE_PASSWORD: secret
@@ -46,19 +47,14 @@ services:
       VIKUNJA_DATABASE_DATABASE: vikunja
       VIKUNJA_SERVICE_JWTSECRET: <a super secure random secret>
       VIKUNJA_SERVICE_FRONTENDURL: https://vikunja.montesj.dev
+      VIKUNJA_API_URL: https://vikunja.montesj.dev:3456/api/v1
     ports:
       - 3456:3456
+      - 82:80
     volumes:
       - ./files:/app/vikunja/files
     depends_on:
       - db
-    restart: unless-stopped
-  frontend:
-    image: vikunja/frontend
-    ports:
-      - 82:80
-    environment:
-      VIKUNJA_API_URL: https://vikunja.montesj.dev:3456/api/v1
     restart: unless-stopped
   tautulli:
     container_name: tautulli
