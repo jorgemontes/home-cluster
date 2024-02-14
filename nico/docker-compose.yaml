@@ -46,11 +46,9 @@ services:
       VIKUNJA_DATABASE_USER: vikunja
       VIKUNJA_DATABASE_DATABASE: vikunja
       VIKUNJA_SERVICE_JWTSECRET: <a super secure random secret>
-      VIKUNJA_SERVICE_FRONTENDURL: https://vikunja.montesj.dev
-      VIKUNJA_API_URL: https://vikunja.montesj.dev:3456/api/v1
+      VIKUNJA_SERVICE_PUBLICURL: https://vikunja.montesj.dev
     ports:
       - 3456:3456
-      - 82:80
     volumes:
       - ./files:/app/vikunja/files
     depends_on:
