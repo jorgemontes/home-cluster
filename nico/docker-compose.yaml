@@ -28,8 +28,8 @@ services:
     image: postgres:13
     container_name: vikunja-db
     environment:
-      - POSTGRES_PASSWORD: secret
-      - POSTGRES_USER: vikunja
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_USER=vikunja
       - TZ=America/Bogota
       - PUID=1000
       - PGID=1000
