@@ -64,34 +64,6 @@ services:
       TZ: 'America/Bogota'
     volumes:
       - /home/pi/config/config/tautulli:/config
-  fireflyiii:
-    image: fireflyiii/core:latest
-    container_name: fireflyiii
-    restart: always
-    volumes:
-      - /home/pi/config/config/fireflyiii:/var/www/html/storage/upload
-    env_file: .env
-    ports:
-      - 83:8080
-    depends_on:
-      - db
-  fireflyiii-cron:
-    image: alpine
-    restart: always
-    container_name: firefly_iii_cron
-    command: sh -c "echo \"0 3 * * * wget -qO- http://nico:83/api/v1/cron/REPLACEME\" | crontab - && crond -f -L /dev/stdout"
-  rclone-fireflyiii:
-    image: rclone/rclone
-    restart: on-failure
-    container_name: rclone-fireflyiii
-    environment:
-      - TZ=America/Bogota
-      - PUID=1000
-      - PGID=1000
-    volumes:
-      - /home/pi/config/config/rclone:/config
-      - /home/pi/config/config/fireflyiii:/mnt/config
-    command: ["sync","/mnt/config","jonomega:/Backup/rclone/fireflyiii"]
   rclone-vikunja-db:
     image: rclone/rclone
     restart: on-failure
