@@ -1,3 +1,2 @@
 0 21  *    * 1,4  /home/pi/git/home-cluster/yiya/start-backup.sh >> /home/pi/cronlog.log
-0 3   *    * 0    sudo apt get update && sudo apt get upgrade -y
 0 1   */14 * *    /home/pi/git/home-cluster/yiya/pihole-backup.sh
