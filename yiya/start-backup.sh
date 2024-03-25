@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /home/pi/git/home-cluster/yiya/backup-config.cfg
+source /home/pi/git/home-cluster/donna/backup-config.cfg
 TEXT="Backup de $HOSTNAME finalizado"
 
 echo `date` > exe-log.log
@@ -14,7 +14,7 @@ echo `date` >> exe-log.log
 
 CONTENT=`cat exe-log.log`
 LENGTH=`wc -c < exe-log.log`
-HOSTNAME_LENGTH=`echo $HOSTNAME | wc -c `
+HOSTNAME_LENGTH=`echo -e $HOSTNAME | wc -c `
 TEXT="$TEXT $CONTENT   "
 JSON="{\"chat_id\": \"$CHAT_ID\", \"text\": \"$TEXT\", \"entities\":[{\"type\":\"bold\",\"offset\":10,\"length\":$HOSTNAME_LENGTH},{\"type\":\"pre\",\"offset\":27,\"length\":$LENGTH}]}"
 echo $JSON > telegram.json 
