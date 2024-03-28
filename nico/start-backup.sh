@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /home/pi/git/home-cluster/donna/backup-config.cfg
+source /home/pi/git/home-cluster/nico/backup-config.cfg
 TEXT="Backup de $HOSTNAME finalizado"
 
 echo `date` > exe-log.log
