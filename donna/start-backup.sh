@@ -14,9 +14,10 @@ echo `date` >> exe-log.log
 
 CONTENT=`cat exe-log.log`
 LENGTH=`wc -c < exe-log.log`
-HOSTNAME_LENGTH=`echo -e $HOSTNAME | wc -c `
+HOSTNAME_LENGTH=`echo -n $HOSTNAME | wc -c `
 TEXT="$TEXT $CONTENT   "
-JSON="{\"chat_id\": \"$CHAT_ID\", \"text\": \"$TEXT\", \"entities\":[{\"type\":\"bold\",\"offset\":10,\"length\":$HOSTNAME_LENGTH},{\"type\":\"pre\",\"offset\":27,\"length\":$LENGTH}]}"
+let OFFSET_PRE = 27 - $HOSTNAME_LENGTH
+JSON="{\"chat_id\": \"$CHAT_ID\", \"text\": \"$TEXT\", \"entities\":[{\"type\":\"bold\",\"offset\":10,\"length\":$HOSTNAME_LENGTH},{\"type\":\"pre\",\"offset\":$OFFSET_PRE,\"length\":$LENGTH}]}"
 echo $JSON > telegram.json 
 
 curl -X POST \
