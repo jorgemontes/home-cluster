@@ -50,6 +50,7 @@ services:
       VIKUNJA_DATABASE_DATABASE: vikunja
       VIKUNJA_SERVICE_JWTSECRET: <a super secure random secret>
       VIKUNJA_SERVICE_PUBLICURL: https://vikunja.montesj.dev/
+      VIKUNJA_CORS_ENABLE: true
     ports:
       - 3456:3456
     volumes:
