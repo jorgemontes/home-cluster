@@ -1,5 +1,16 @@
-version: "3.3"
 services:
+  changedetection:
+    image: lscr.io/linuxserver/changedetection.io:latest
+    container_name: changedetection
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Bogota
+    volumes:
+      - /home/pi/config/config/changedetection:/config
+    ports:
+      - 5000:5000
+    restart: unless-stopped
   heimdall:
     image: linuxserver/heimdall:latest
     container_name: heimdall
@@ -128,3 +139,15 @@ services:
       - /home/pi/config/config/rclone:/config
       - /home/pi/config/config/tautulli/backups/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/tautulli/"]
+  rclone-changedetection:
+    image: rclone/rclone
+    restart: no
+    container_name: rclone-changedetection
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/config/config/changedetection/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/changedetection"]
