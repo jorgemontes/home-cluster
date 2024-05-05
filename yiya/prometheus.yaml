@@ -27,3 +27,9 @@ scrape_configs:
     static_configs:
       - targets: ['plex-local:9100']
     scheme: http
+  - job_name: 'uptime'
+    scrape_interval: 30s
+    scheme: http
+    metrics_path: '/metrics'
+    static_configs:
+      - targets: ['yiya:3001']
