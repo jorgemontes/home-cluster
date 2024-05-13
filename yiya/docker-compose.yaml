@@ -75,3 +75,39 @@ services:
       - /home/pi/config/config/rclone:/config
       - /home/pi/config/config/grafana/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/grafana"]
+  rclone-uptime-kuma-proton:
+    image: rclone/rclone
+    restart: on-failure
+    container_name: rclone-uptime-kuma-proton
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/config/config/uptime-kuma/:/mnt/config
+    command: ["copy","/mnt/config","jonoproton:/Backup/rclone/uptime-kuma/"]
+  rclone-pihole-proton:
+    image: rclone/rclone
+    restart: on-failure
+    container_name: rclone-pihole-proton
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/pihole-backup/:/mnt/config
+    command: ["copy","/mnt/config","jonoproton:/Backup/rclone/pihole2"]
+  rclone-grafana-proton:
+    image: rclone/rclone
+    restart: on-failure
+    container_name: rclone-grafana-proton
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/config/config/grafana/:/mnt/config
+    command: ["copy","/mnt/config","jonoproton:/Backup/rclone/grafana"]
