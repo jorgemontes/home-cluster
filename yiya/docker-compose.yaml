@@ -38,9 +38,9 @@ services:
       - UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN=true
     volumes:
       - /home/pi/config/config/uptime-kuma:/app/data
-  uptime-kuma:
+  uptime-kuma2:
     image: louislam/uptime-kuma
-    container_name: uptime-kuma
+    container_name: uptime-kuma2
     ports:
       - 3001:3002
     restart: always
