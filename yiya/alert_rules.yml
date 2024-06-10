@@ -9,3 +9,36 @@ groups:
       annotations:
         summary: "Instance {{ $labels.instance }} down"
         description: "{{ $labels.instance }} de job {{ $labels.job }} está caído."
+    - alert: HighCPUUsage
+      expr: rate(node_cpu_seconds_total{mode="idle"}[5m]) < 0.2
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Alto uso de CPU en {{ $labels.instance }}"
+        description: "El uso de CPU en {{ $labels.instance }} ha estado por encima del 80% durante los últimos 5 minutos."
+    - alert: LowMemoryAvailable
+      expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) < 0.2
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Baja disponibilidad de memoria en {{ $labels.instance }}"
+        description: "La memoria disponible en {{ $labels.instance }} ha estado por debajo del 20% durante los últimos 5 minutos."
+    - alert: HighNetworkTraffic
+      expr: rate(node_network_receive_bytes_total[5m]) + rate(node_network_transmit_bytes_total[5m]) > 10000000
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Alto tráfico de red en {{ $labels.instance }}"
+        description: "El tráfico de red en {{ $labels.instance }} ha superado los 10 MB/s durante los últimos 5 minutos."
+    - alert: LowDiskSpace
+      expr: (node_filesystem_avail_bytes / node_filesystem_size_bytes) < 0.2
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: "Espacio en disco bajo en {{ $labels.instance }}"
+        description: "El espacio disponible en el sistema de archivos de {{ $labels.instance }} ha estado por debajo del 20% durante los últimos 5 minutos."
+
