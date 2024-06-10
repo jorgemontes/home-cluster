@@ -15,7 +15,7 @@ services:
       - 9090:9090
     volumes:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yml
-   alertmanager:
+  alertmanager:
     image: prom/alertmanager
     restart: always
     container_name: alertmanager
