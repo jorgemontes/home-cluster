@@ -23,7 +23,7 @@ services:
     ports:
       - 9093:9093
     volumes:
-      - ./alertmanager.yml:/etc/prometheus/alertmanager.yml
+      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
       - ./templates:/etc/alertmanager/template
   grafana:
     container_name: grafana
