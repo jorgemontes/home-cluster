@@ -1,3 +1,16 @@
+global:
+  scrape_interval: 3m  
+  evaluation_interval: 2m 
+
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+      - 'alertmanager:9093'
+
+rule_files:
+  - "alert_rules.yml"  
+
 scrape_configs:
   - job_name: 'wendy'
     metrics_path: /api/prometheus
@@ -33,14 +46,4 @@ scrape_configs:
     metrics_path: '/metrics'
     static_configs:
       - targets: ['yiya:3001']
-groups:
-  - name: alert-group
-    rules:
-    - alert: InstanceDown
-      expr: up == 0
-      for: 1m
-      labels:
-        severity: critical
-      annotations:
-        summary: "Instance {{ $labels.instance }} down"
-        description: "{{ $labels.instance }} de job {{ $labels.job }} está caído."
+
