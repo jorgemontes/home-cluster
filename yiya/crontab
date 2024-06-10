@@ -1,2 +1,1 @@
 0 21  *    * 1,4  /home/pi/git/home-cluster/yiya/start-backup.sh >> /home/pi/cronlog.log
-0 1   */14 * *    /home/pi/git/home-cluster/yiya/pihole-backup.sh
