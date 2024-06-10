@@ -1,5 +1,6 @@
 global:
   resolve_timeout: 5m
+  telegram_api_url: https://api.telegram.org
 
 route:
   receiver: 'telegram'
