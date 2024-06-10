@@ -2,7 +2,7 @@ global:
   resolve_timeout: 5m
 
 route:
-  receiver: 'default'
+  receiver: 'telegram'
 
 receivers:
 - name: 'telegram'
