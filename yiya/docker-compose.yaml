@@ -39,6 +39,16 @@ services:
       - UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN=true
     volumes:
       - /home/pi/config/config/uptime-kuma:/app/data
+  uptime-kuma:
+    image: louislam/uptime-kuma
+    container_name: uptime-kuma
+    ports:
+      - 3001:3002
+    restart: always
+    environment:
+      - UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN=true
+    volumes:
+      - /home/pi/config/config/uptime-kuma2:/app/data
   rclone-uptime-kuma:
     image: rclone/rclone
     restart: on-failure
