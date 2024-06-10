@@ -1,0 +1,8 @@
+{{ define "__telegram_text" }}
+{{ range .Alerts }}
+*Alert:* {{ .Annotations.summary }} 
+*Description:* {{ .Annotations.description }}
+*Severity:* {{ .Labels.severity }}
+*Starts At:* {{ .StartsAt }}
+{{ end }}
+{{ end }}
