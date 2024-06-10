@@ -42,7 +42,7 @@ services:
     image: louislam/uptime-kuma
     container_name: uptime-kuma2
     ports:
-      - 3001:3002
+      - 3002:3001
     restart: always
     environment:
       - UPTIME_KUMA_DISABLE_FRAME_SAMEORIGIN=true
