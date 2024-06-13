@@ -67,6 +67,11 @@ services:
       TZ: 'America/Bogota'
     volumes:
       - /home/pi/config/config/tautulli:/config
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
   rclone-vikunja-db:
     image: rclone/rclone
     restart: no
