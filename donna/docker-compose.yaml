@@ -77,6 +77,18 @@ services:
     volumes:
       - /home/pi/config/config/transmission:/config
       - /home/pi/completedTorrents:/downloads
+  changedetection:
+    image: lscr.io/linuxserver/changedetection.io:latest
+    container_name: changedetection
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Bogota
+    volumes:
+      - /home/pi/config/config/changedetection:/config
+    ports:
+      - 5000:5000
+    restart: unless-stopped
   rclone-radarr:
     image: rclone/rclone
     restart: on-failure
@@ -89,18 +101,6 @@ services:
       - /home/pi/config/config/rclone:/config
       - /home/pi/config/config/radarr/Backups/scheduled/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/radarr/"]
-  rclone-radarr-proton:
-    image: rclone/rclone
-    restart: on-failure
-    container_name: rclone-radarr-proton
-    environment:
-      - TZ=America/Bogota
-      - PUID=1000
-      - PGID=1000
-    volumes:
-      - /home/pi/config/config/rclone:/config
-      - /home/pi/config/config/radarr/Backups/scheduled/:/mnt/config
-    command: ["copy","/mnt/config","jonoproton:/Backup/rclone/radarr/"]
   rclone-sonarr:
     image: rclone/rclone
     restart: on-failure
@@ -113,18 +113,6 @@ services:
       - /home/pi/config/config/rclone:/config
       - /home/pi/config/config/sonarr/Backups/scheduled/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/sonarr/"]
-  rclone-sonarr-proton:
-    image: rclone/rclone
-    restart: on-failure
-    container_name: rclone-sonarr-proton
-    environment:
-      - TZ=America/Bogota
-      - PUID=1000
-      - PGID=1000
-    volumes:
-      - /home/pi/config/config/rclone:/config
-      - /home/pi/config/config/sonarr/Backups/scheduled/:/mnt/config
-    command: ["copy","/mnt/config","jonoproton:/Backup/rclone/sonarr/"]
   rclone-lidarr:
     image: rclone/rclone
     restart: on-failure
@@ -137,18 +125,6 @@ services:
       - /home/pi/config/config/rclone:/config
       - /home/pi/config/config/lidarr/Backups/scheduled/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/lidarr/"]
-  rclone-lidarr-proton:
-    image: rclone/rclone
-    restart: on-failure
-    container_name: rclone-lidarr-proton
-    environment:
-      - TZ=America/Bogota
-      - PUID=1000
-      - PGID=1000
-    volumes:
-      - /home/pi/config/config/rclone:/config
-      - /home/pi/config/config/lidarr/Backups/scheduled/:/mnt/config
-    command: ["copy","/mnt/config","jonoproton:/Backup/rclone/lidarr/"]
   rclone-bazarr:
     image: rclone/rclone
     restart: on-failure
@@ -161,18 +137,6 @@ services:
       - /home/pi/config/config/rclone:/config
       - /home/pi/config/config/bazarr/backup/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/bazarr/"]
-  rclone-bazarr-proton:
-    image: rclone/rclone
-    restart: on-failure
-    container_name: rclone-bazarr-proton
-    environment:
-      - TZ=America/Bogota
-      - PUID=1000
-      - PGID=1000
-    volumes:
-      - /home/pi/config/config/rclone:/config
-      - /home/pi/config/config/bazarr/backup/:/mnt/config
-    command: ["copy","/mnt/config","jonoproton:/Backup/rclone/bazarr/"]
   rclone-prowlarr:
     image: rclone/rclone
     restart: on-failure
@@ -185,18 +149,6 @@ services:
       - /home/pi/config/config/rclone:/config
       - /home/pi/config/config/prowlarr/Backups/scheduled/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/prowlarr/"]
-  rclone-prowlarr-proton:
-    image: rclone/rclone
-    restart: on-failure
-    container_name: rclone-prowlarr-proton
-    environment:
-      - TZ=America/Bogota
-      - PUID=1000
-      - PGID=1000
-    volumes:
-      - /home/pi/config/config/rclone:/config
-      - /home/pi/config/config/prowlarr/Backups/scheduled/:/mnt/config
-    command: ["copy","/mnt/config","jonoproton:/Backup/rclone/prowlarr/"]
   rclone-transmission:
     image: rclone/rclone
     restart: on-failure
@@ -209,16 +161,17 @@ services:
       - /home/pi/config/config/rclone:/config
       - /home/pi/config/config/transmission/:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/transmission/"]
-  rclone-transmission-proton:
+  rclone-changedetection:
     image: rclone/rclone
-    restart: on-failure
-    container_name: rclone-transmission-proton
+    restart: no
+    container_name: rclone-changedetection
     environment:
       - TZ=America/Bogota
       - PUID=1000
       - PGID=1000
     volumes:
       - /home/pi/config/config/rclone:/config
-      - /home/pi/config/config/transmission/:/mnt/config
-    command: ["copy","/mnt/config","jonoproton:/Backup/rclone/transmission/"]
+      - /home/pi/config/config/changedetection/:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/changedetection"]
+
 
