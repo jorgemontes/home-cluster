@@ -84,10 +84,36 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/Bogota
+      - WEBDRIVER_URL=http://browser-chrome:4444/wd/hub
     volumes:
       - /home/pi/config/config/changedetection:/config
     ports:
       - 5000:5000
+    restart: unless-stopped
+    depends_on:
+      playwright-chrome:
+         condition: service_started
+  playwright-chrome:
+    hostname: playwright-chrome
+    image: dgtlmoon/sockpuppetbrowser:latest
+    cap_add:
+      - SYS_ADMIN
+    restart: unless-stopped
+    environment:
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1024
+      - SCREEN_DEPTH=16
+      - MAX_CONCURRENT_CHROME_PROCESSES=10
+  browser-chrome:
+    hostname: browser-chrome
+    image: selenium/standalone-chrome:4
+    environment:
+      - VNC_NO_PASSWORD=1
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1080
+      - SCREEN_DEPTH=24
+    volumes:
+      - /dev/shm:/dev/shm
     restart: unless-stopped
   rclone-radarr:
     image: rclone/rclone
