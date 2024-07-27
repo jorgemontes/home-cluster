@@ -94,7 +94,7 @@ services:
          condition: service_started
   playwright-chrome:
     hostname: playwright-chrome
-    image: seleniarm/standalone-chromium:latest
+    image: seleniarm/standalone-firefox:latest
     cap_add:
       - SYS_ADMIN
     restart: unless-stopped
