@@ -105,7 +105,7 @@ services:
       - MAX_CONCURRENT_CHROME_PROCESSES=10
   browser-chrome:
     hostname: browser-chrome
-    image: selenium/standalone-chrome:4
+    image: selenium/standalone-chromium:latest
     environment:
       - VNC_NO_PASSWORD=1
       - SCREEN_WIDTH=1920
