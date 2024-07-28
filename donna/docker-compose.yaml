@@ -83,31 +83,17 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/Bogota
-      - WEBDRIVER_URL=http://browser-chrome:4444/wd/hub
-      - PLAYWRIGHT_DRIVER_URL=ws://playwright-chrome:3000
+      - WEBDRIVER_URL=http://browser-chromium:4444/wd/hub
     volumes:
       - /home/pi/config/config/changedetection:/config
     ports:
       - 5000:5000
     restart: unless-stopped
     depends_on:
-      playwright-chrome:
+      playwright-chromium:
          condition: service_started
-  playwright-chrome:
-    hostname: playwright-chrome
-    image: selenium/standalone-chromium:latest
-    ports:
-      - 3000:3000
-    cap_add:
-      - SYS_ADMIN
-    restart: unless-stopped
-    environment:
-      - SCREEN_WIDTH=1920
-      - SCREEN_HEIGHT=1024
-      - SCREEN_DEPTH=16
-      - MAX_CONCURRENT_CHROME_PROCESSES=10
-  browser-chrome:
-    hostname: browser-chrome
+  browser-chromium:
+    hostname: browser-chromium
     image: selenium/standalone-chromium:latest
     ports:
       - 4444:4444
