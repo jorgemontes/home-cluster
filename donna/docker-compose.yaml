@@ -90,7 +90,7 @@ services:
       - 5000:5000
     restart: unless-stopped
     depends_on:
-      playwright-chromium:
+      browser-chromium:
          condition: service_started
   browser-chromium:
     hostname: browser-chromium
