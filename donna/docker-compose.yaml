@@ -106,6 +106,8 @@ services:
   browser-chrome:
     hostname: browser-chrome
     image: selenium/standalone-chromium:latest
+    ports:
+      - 4444:4444
     environment:
       - VNC_NO_PASSWORD=1
       - SCREEN_WIDTH=1920
