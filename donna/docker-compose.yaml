@@ -84,6 +84,7 @@ services:
       - PGID=1000
       - TZ=America/Bogota
       - WEBDRIVER_URL=http://browser-chromium:4444/wd/hub
+      - LC_ALL=en_US.UTF-8
     volumes:
       - /home/pi/config/config/changedetection:/config
     ports:
