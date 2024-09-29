@@ -41,7 +41,7 @@ services:
     ports:
       - 3456:3456
     volumes:
-      - ./files:/app/vikunja/files
+      - /home/pi/config/config/vikunja/files:/app/vikunja/files
     depends_on:
       - db
     restart: unless-stopped
@@ -77,8 +77,8 @@ services:
       - PGID=1000
     volumes:
       - /home/pi/config/config/rclone:/config
-      - ./files:/mnt/config
-    command: ["sync","/mnt/config","jonomega:/Backup/rclone/vikunja/api"]
+      - /home/pi/config/config/vikunja/files:/mnt/config
+    command: ["sync","/mnt/config","jonomega:/Backup/rclone/vikunja/files"]
   rclone-pihole:
     image: rclone/rclone
     restart: no
