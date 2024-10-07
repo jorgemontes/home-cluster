@@ -1,4 +1,5 @@
 #!/bin/bash
+whoami
 date
 
 /usr/local/bin/pihole -a -t /home/pi/pihole-backup/pi-hole-nico-teleporter_$(date +%Y-%m-%d).tar.gz
