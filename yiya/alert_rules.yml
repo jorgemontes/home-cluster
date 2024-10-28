@@ -34,7 +34,7 @@ groups:
         summary: "Alto tráfico de red en {{ $labels.instance }}"
         description: "El tráfico de red en {{ $labels.instance }} ha superado los 10 MB/s durante los últimos 5 minutos."
     - alert: LowDiskSpace
-      expr: (node_filesystem_avail_bytes / node_filesystem_size_bytes) < 0.1
+      expr: (node_filesystem_avail_bytes / node_filesystem_size_bytes) < 0.05
       for: 5m
       labels:
         severity: warning
