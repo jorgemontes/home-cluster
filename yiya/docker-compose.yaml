@@ -29,7 +29,6 @@ services:
     container_name: grafana
     image: grafana/grafana
     restart: always
-    environment:
     ports:
       - 3000:3000
     volumes:
