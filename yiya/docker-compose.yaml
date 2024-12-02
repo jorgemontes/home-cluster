@@ -34,6 +34,8 @@ services:
        - GF_AUTH_ANONYMOUS_ENABLED=true
        - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
        - GF_SECURITY_ALLOW_EMBEDDING=true
+       - GF_PLUGIN_ADMIN_ENABLED=true
+       - GF_PLUGIN_ADMIN_EXTERNAL_MANAGE_ENABLED=true
     ports:
       - 3000:3000
     volumes:
