@@ -45,7 +45,7 @@ services:
     image: vikunja/vikunja
     container_name: vikunja
     environment:
-      VIKUNJA_DATABASE_HOST: db
+      VIKUNJA_DATABASE_HOST: vikunja-db
       VIKUNJA_DATABASE_PASSWORD: secret
       VIKUNJA_DATABASE_TYPE: postgres
       VIKUNJA_DATABASE_USER: vikunja
