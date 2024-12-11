@@ -11,7 +11,22 @@ services:
       - "81:80"
     volumes:
       - /home/pi/config/config/heimdall:/config
-  db:
+  gnucash-db:
+    image: postgres:13
+    container_name: gnucash-db
+    environment:
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_USER=gnucash
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/gnucash/db/:/backup
+      - ./db:/var/lib/postgresql/data
+    restart: unless-stopped
+    ports:
+      - "5433:5432"
+  vikunja-db:
     image: postgres:13
     container_name: vikunja-db
     environment:
@@ -43,7 +58,7 @@ services:
     volumes:
       - /home/pi/config/config/vikunja/files:/app/vikunja/files
     depends_on:
-      - db
+      - vikunja-db
     restart: unless-stopped
   tautulli:
     container_name: tautulli
@@ -67,6 +82,18 @@ services:
       - /home/pi/config/config/rclone:/config
       - /home/pi/config/config/vikunja/db:/mnt/config
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/vikunja/db"]
+  rclone-gnucash-db:
+    image: rclone/rclone
+    restart: no
+    container_name: rclone-gnucash-db
+    environment:
+      - TZ=America/Bogota
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/pi/config/config/rclone:/config
+      - /home/pi/config/config/gnucash/db:/mnt/config
+    command: ["copy","/mnt/config","jonomega:/Backup/rclone/gnucash/db"]
   rclone-vikunja-api:
     image: rclone/rclone
     restart: no
