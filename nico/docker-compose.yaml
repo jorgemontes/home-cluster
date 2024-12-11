@@ -37,7 +37,7 @@ services:
       - PGID=1000
     volumes:
       - /home/pi/config/config/vikunja/db/:/backup
-      - ./db:/var/lib/postgresql/data
+      - ./db-vikunja:/var/lib/postgresql/data
     restart: unless-stopped
     ports:
       - "5432:5432"
