@@ -22,7 +22,7 @@ services:
       - PGID=1000
     volumes:
       - /home/pi/config/config/gnucash/db/:/backup
-      - ./db:/var/lib/postgresql/data
+      - ./db-gnucash:/var/lib/postgresql/data
     restart: unless-stopped
     ports:
       - "5433:5432"
