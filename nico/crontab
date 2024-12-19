@@ -1,3 +1,3 @@
 0 21  * * 2,4,6  /home/pi/git/home-cluster/nico/start-backup.sh >> /home/pi/cronlog.log
-0 1   * * 1,3,5  /home/pi/git/home-cluster/nico/external-apps-backup.sh >> /home/pi/cronlog.log
+0 1   * * *  /home/pi/git/home-cluster/nico/external-apps-backup.sh >> /home/pi/cronlog.log
 
