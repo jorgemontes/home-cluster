@@ -41,4 +41,13 @@ groups:
       annotations:
         summary: "Espacio en disco bajo en {{ $labels.instance }}"
         description: "El espacio disponible en el sistema de archivos de {{ $labels.instance }} ha estado por debajo del 10% durante los últimos 5 minutos."
+    - alert: HighTemperature
+        expr: node_temperature_celsius > 65
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "🌡️ Temperatura alta en {{ $labels.instance }}"
+          description: "🌡️ La temperatura es mayor 65°C. Valor Actual: {{ $value }}."
+
 
