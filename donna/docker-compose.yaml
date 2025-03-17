@@ -76,6 +76,24 @@ services:
     volumes:
       - /home/pi/config/config/transmission:/config
       - /home/pi/completedTorrents:/downloads
+  gluetun:
+    image: qmcgaw/gluetun
+    container_name: gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    ports:
+      - 8888:8888/tcp # HTTP proxy
+      - 8388:8388/tcp # Shadowsocks
+      - 8388:8388/udp # Shadowsocks
+    volumes:
+      - /yourpath:/gluetun
+    environment:
+      - VPN_SERVICE_PROVIDER=protonvpn
+      - VPN_TYPE=wireguard
+      - WIREGUARD_PRIVATE_KEY=
+      - SERVER_COUNTRIES=US
   changedetection:
     image: lscr.io/linuxserver/changedetection.io:latest
     container_name: changedetection
