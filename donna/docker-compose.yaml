@@ -194,5 +194,6 @@ services:
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/changedetection"]
 networks:
   vpn_network:
+    name: vpn_network
     external: true
 
