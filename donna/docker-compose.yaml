@@ -77,7 +77,7 @@ services:
       - /home/pi/config/config/transmission:/config
       - /home/pi/completedTorrents:/downloads
     networks:
-      - vpn_network
+      - vlanforvpn
   changedetection:
     image: lscr.io/linuxserver/changedetection.io:latest
     container_name: changedetection
