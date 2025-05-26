@@ -13,6 +13,8 @@ services:
       - /home/pi/Videos/Movies:/movies
       - /home/pi/completedTorrents:/downloads
       - /home/pi/config/config/radarr:/config
+    networks:
+      - host
   sonarr:
     image: linuxserver/sonarr
     restart: always
