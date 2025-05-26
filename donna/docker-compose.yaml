@@ -65,7 +65,7 @@ services:
   transmission:
     image: linuxserver/transmission
     restart: always
-    ontainer_name: transmission
+    container_name: transmission
     ports:
       - 9091:9091
       - 51413:51413
