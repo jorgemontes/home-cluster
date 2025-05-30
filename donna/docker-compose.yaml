@@ -198,12 +198,10 @@ services:
 networks:
   vlanforvpn:
     external: true
-vlanforvpn:
-  external: true
     driver: macvlan
     driver_opts:
-      parent: ens192.30
+      parent: eth0.100
     ipam:
       config:
-        - subnet: 192.168.30.0/24
-          gateway: 192.168.30.1
+        - subnet: 192.168.100.0/24
+          gateway: 192.168.100.1
