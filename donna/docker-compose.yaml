@@ -76,7 +76,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/Bogota
-      - VLAN: 100
+      - VLAN=100
     volumes:
       - /home/pi/config/config/transmission:/config
       - /home/pi/completedTorrents:/downloads
