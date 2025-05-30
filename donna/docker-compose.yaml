@@ -81,8 +81,8 @@ services:
       - /home/pi/config/config/transmission:/config
       - /home/pi/completedTorrents:/downloads
     networks:
-      - vlanforvpn:
-          ipv4_address: 192.168.100.2
+      vlanforvpn:
+        ipv4_address: 192.168.100.2
   changedetection:
     image: lscr.io/linuxserver/changedetection.io:latest
     container_name: changedetection
