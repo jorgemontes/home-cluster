@@ -13,8 +13,6 @@ services:
       - /home/pi/Videos/Movies:/movies
       - /home/pi/completedTorrents:/downloads
       - /home/pi/config/config/radarr:/config
-    networks:
-      - red_interna
   sonarr:
     image: linuxserver/sonarr
     restart: always
@@ -200,6 +198,12 @@ services:
 networks:
   vlanforvpn:
     external: true
-  red_interna:
-    driver: bridge
-
+vlanforvpn:
+  external: true
+    driver: macvlan
+    driver_opts:
+      parent: ens192.30
+    ipam:
+      config:
+        - subnet: 192.168.30.0/24
+          gateway: 192.168.30.1
