@@ -76,14 +76,13 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=America/Bogota
+      - VLAN: 100
     volumes:
       - /home/pi/config/config/transmission:/config
       - /home/pi/completedTorrents:/downloads
     networks:
       - vlanforvpn:
           ipv4_address: 192.168.100.2
-    environment:
-      VLAN: 100
   changedetection:
     image: lscr.io/linuxserver/changedetection.io:latest
     container_name: changedetection
