@@ -197,7 +197,6 @@ services:
     command: ["copy","/mnt/config","jonomega:/Backup/rclone/changedetection"]
 networks:
   vlanforvpn:
-    external: true
     driver: macvlan
     driver_opts:
       parent: eth0.100
