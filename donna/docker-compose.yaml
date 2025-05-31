@@ -13,6 +13,9 @@ services:
       - /home/pi/Videos/Movies:/movies
       - /home/pi/completedTorrents:/downloads
       - /home/pi/config/config/radarr:/config
+    networks:
+      local-net:
+        ipv4_address: 192.168.66.40
   sonarr:
     image: linuxserver/sonarr
     restart: always
@@ -27,6 +30,9 @@ services:
       - /home/pi/config/config/sonarr:/config
     ports:
       - 8989:8989
+    networks:
+      local-net:
+        ipv4_address: 192.168.66.41
   lidarr:
     image: linuxserver/lidarr
     restart: always
@@ -41,6 +47,9 @@ services:
       - /home/pi/config/config/lidarr:/config
     ports:
       - 8686:8686
+    networks:
+      local-net:
+        ipv4_address: 192.168.66.42
   bazarr:
     image: linuxserver/bazarr
     restart: always
@@ -62,6 +71,9 @@ services:
       - /home/pi/config/config/prowlarr:/config
     ports:
       - 9696:9696
+    networks:
+      local-net:
+        ipv4_address: 192.168.66.43
   transmission:
     image: linuxserver/transmission
     restart: always
@@ -204,3 +216,11 @@ networks:
       config:
         - subnet: 192.168.100.0/24
           gateway: 192.168.100.1
+  local-net:
+    driver: macvlan
+    driver_opts:
+      parent: eth0
+    ipam:
+      config:
+        - subnet: 192.168.66.0/24
+          gateway: 192.168.66.1
