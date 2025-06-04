@@ -141,5 +141,5 @@ services:
     volumes:
       - /home/pi/config/config/rclone:/config
       - /home/pi/config/config/heimdall/:/mnt/config
-    command: ["copy","/mnt/config","jonomega:/Backup/rclone/heimdall"]
+    command: ["sync","/mnt/config","jonomega:/Backup/rclone/heimdall"]
 
